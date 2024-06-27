@@ -1,5 +1,6 @@
 import { Button, FormControl, FormLabel, Heading, Input, Stack } from "@chakra-ui/react"
 import useForm from "../hooks/useForm"
+import { signInWithEmail } from "../services/auth"
 
 const initialState = {
     email: '',
@@ -12,9 +13,10 @@ const LoginForm = () => {
     const { formValues, handleInputChange} = useForm(initialState)
     const { email, password } = formValues
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formValues) // Esto no es necesario para que funcione el codigo es solo para ver los valores que se ingresan en los inputs del form como objeto
+        // console.log(formValues) // Esto no es necesario para que funcione el codigo es solo para ver los valores que se ingresan en los inputs del form como objeto
+        await signInWithEmail(formValues) 
     }
 
     return(

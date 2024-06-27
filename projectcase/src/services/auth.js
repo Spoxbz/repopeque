@@ -24,3 +24,18 @@ export const updateProfile = async (data) =>{
         console.error(error)
     }
 }
+
+// Crear servicio de sign in, codigo copiado de 
+
+export const signInWithEmail = async (data) => {
+    let result;
+
+    try {
+        result = await supabase.auth.signIn(data)
+        return result
+    } catch (error) {
+        console.log(error)
+    }
+
+    return result
+}
