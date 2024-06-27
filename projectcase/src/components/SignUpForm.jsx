@@ -1,6 +1,9 @@
 import { Button, FormControl, FormLabel, Heading, Input, Stack } from "@chakra-ui/react"
 // import { useState } from "react"
 import useForm from "../hooks/useForm"
+import { signUpWithEmail, updateProfile } from "../services/auth"
+import { supabase } from "../api/config"
+
 
 const initialState = {
     fullName: '',
@@ -13,9 +16,20 @@ const SignUpForm = () => {
     const { formValues, handleInputChange} = useForm(initialState)
     const { fullName, email, password } = formValues
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(formValues) // Esto no es necesario para que funcione el codigo es solo para ver los valores que se ingresan en los inputs del form como objeto
+        // console.log(formValues) // Esto no es necesario para que funcione el codigo es solo para ver los valores que se ingresan en los inputs del form como objeto
+        const {fullName, email, password} = formValues
+        const result = await signUpWithEmail({email, password})
+        // console.log(result) // solo para ver que nos devuelve la data registrada
+        if (result){
+            const user = supabase.auth.user()
+            const data = {
+                id: user.id,
+                full_name: fullName
+            }
+            await updateProfile(data)
+        }
     }
 
     return(
