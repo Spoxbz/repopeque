@@ -8,7 +8,7 @@ import MagicLinkForm from "./MagicLinkForm"
 const Auth = () => {
     return(
         <>
-            <h1>Componente de Auth.jsx</h1>
+            {/*<h1>Componente de Auth.jsx</h1>*/}
             <Grid templateColumns='repeat(3, 300px)' gap={70} placeContent={"center"} w={'auto'} h={'100%'}>
                 <GridItem>
                     <SignUpForm />

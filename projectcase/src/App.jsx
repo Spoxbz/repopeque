@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <h1>Esto es App.jsx</h1>
+      {/*<h1>Esto es App.jsx</h1>*/}
       <Container maxW='100%' h='100vh'>
         <AppRouter/>
       </Container>
